@@ -52,4 +52,52 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button, buttonVariants } 
+export { Button, buttonVariants }
+
+// Simple Switch component for toggling boolean state (e.g., theme)
+export interface SwitchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  checked: boolean;
+  onCheckedChange: (checked: boolean) => void;
+  label?: string;
+}
+
+export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
+  ({ checked, onCheckedChange, label, className, ...props }, ref) => (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label={label}
+      ref={ref}
+      tabIndex={0}
+      className={cn(
+        "relative inline-flex h-8 w-20 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 px-1",
+        checked
+          ? "bg-primary"
+          : "bg-muted border border-gray-300 shadow-sm hover:bg-gray-200",
+        className
+      )}
+      onClick={() => onCheckedChange(!checked)}
+      {...props}
+    >
+      {/* Track label, always above the thumb */}
+      <span
+        className={cn(
+          "w-full text-xs font-medium text-center z-10 select-none transition-colors",
+          checked ? "text-primary-foreground" : "text-gray-700"
+        )}
+        style={{ pointerEvents: 'none' }}
+      >
+        {checked ? 'Dark' : 'Light'}
+      </span>
+      {/* Thumb */}
+      <span
+        className={cn(
+          "absolute left-1 top-1 h-6 w-6 rounded-full bg-white shadow-md transition-transform border border-gray-300 z-20",
+          checked ? "translate-x-12" : "translate-x-0"
+        )}
+      />
+    </button>
+  )
+);
+Switch.displayName = "Switch"; 
