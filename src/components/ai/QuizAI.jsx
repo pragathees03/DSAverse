@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
-import { Button } from '@/components/ui/button.tsx'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.tsx'
-import { Input } from '@/components/ui/input.tsx'
-import { Badge } from '@/components/ui/badge.tsx'
+import { Button } from '@/components/ui/button.jsx'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.jsx'
+import { Input } from '@/components/ui/input.jsx'
+import { Badge } from '@/components/ui/badge.jsx'
 import { 
   Send, 
   X, 
@@ -14,20 +14,8 @@ import {
   Bot
 } from 'lucide-react'
 
-interface Message {
-  id: string
-  type: 'user' | 'ai'
-  content: string
-  timestamp: Date
-}
-
-interface QuizAIProps {
-  currentQuestion?: any
-  onClose?: () => void
-}
-
-export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
-  const [messages, setMessages] = useState<Message[]>([
+export function QuizAI({ currentQuestion, onClose }) {
+  const [messages, setMessages] = useState([
     {
       id: '1',
       type: 'ai',
@@ -37,7 +25,7 @@ export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
   ])
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -71,15 +59,15 @@ export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
     }
   ]
 
-  const handleQuickAction = (query: string) => {
+  const handleQuickAction = (query) => {
     setInputValue(query)
     handleSendMessage(query)
   }
 
-  const handleSendMessage = async (message: string = inputValue) => {
+  const handleSendMessage = async (message = inputValue) => {
     if (!message.trim()) return
 
-    const userMessage: Message = {
+    const userMessage = {
       id: Date.now().toString(),
       type: 'user',
       content: message,
@@ -93,7 +81,7 @@ export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
     // Simulate AI response with built-in intelligence
     setTimeout(() => {
       const aiResponse = generateAIResponse(message, currentQuestion)
-      const aiMessage: Message = {
+      const aiMessage = {
         id: (Date.now() + 1).toString(),
         type: 'ai',
         content: aiResponse,
@@ -104,7 +92,7 @@ export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
     }, 1000)
   }
 
-  const generateAIResponse = (userMessage: string, question: any): string => {
+  const generateAIResponse = (userMessage, question) => {
     const lowerMessage = userMessage.toLowerCase()
     
     // Context-aware responses based on current question
@@ -128,7 +116,7 @@ export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
     return "I'm here to help you with your DSA studies! You can ask me for explanations, hints, practice problems, or study tips. What specific topic would you like to focus on?"
   }
 
-  const getHintForQuestion = (question: any): string => {
+  const getHintForQuestion = (question) => {
     const hints = {
       'Binary Search Tree': 'Think about the properties of BST and how traversal works.',
       'Stack': 'Remember LIFO principle and common applications like function calls.',
@@ -140,7 +128,7 @@ export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
     return hints[question.category] || 'Focus on the key concepts and properties of the data structure or algorithm.'
   }
 
-  const getExplanationForTopic = (category: string): string => {
+  const getExplanationForTopic = (category) => {
     const explanations = {
       'Binary Search Tree': 'A BST is a tree data structure where each node has at most two children, and the left subtree contains nodes with values less than the parent, while the right subtree contains nodes with values greater than the parent.',
       'Stack': 'A stack is a LIFO (Last In, First Out) data structure. Think of it like a stack of plates - you can only add or remove from the top.',
@@ -150,11 +138,11 @@ export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
     return explanations[category] || 'This topic involves fundamental computer science concepts. Would you like me to explain a specific aspect?'
   }
 
-  const getSimilarProblems = (category: string): string => {
+  const getSimilarProblems = (category) => {
     return `Here are some practice problems for ${category}:\n\n• Basic implementation\n• Time complexity analysis\n• Real-world applications\n• Optimization techniques\n\nWould you like me to provide specific problem examples?`
   }
 
-  const getStudyTips = (category: string): string => {
+  const getStudyTips = (category) => {
     return `Study tips for ${category}:\n\n• Understand the fundamental concepts first\n• Practice implementation from scratch\n• Analyze time and space complexity\n• Solve problems on coding platforms\n• Review and understand solutions\n\nConsistent practice is key to mastery!`
   }
 

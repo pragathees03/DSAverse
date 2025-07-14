@@ -1,29 +1,22 @@
 import { useState, useEffect, useCallback } from "react";
-import { Question, getRandomQuestions } from "@/data/dsaQuestions";
-import { QuizStart } from "./QuizStart.tsx";
-import { QuizCard } from "./QuizCard.tsx";
-import { ScoreBoard } from "./ScoreBoard.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import { getRandomQuestions } from "@/data/dsaQuestions.js";
+import { QuizStart } from "./QuizStart.jsx";
+import { QuizCard } from "./QuizCard.jsx";
+import { ScoreBoard } from "./ScoreBoard.jsx";
+import { Button } from "@/components/ui/button.jsx";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronRight, ChevronLeft, Bot } from "lucide-react";
-import { QuizAI } from "../ai/QuizAI.tsx";
-
-interface Answer {
-  questionId: number;
-  selectedAnswer: number;
-  isCorrect: boolean;
-  timeSpent: number;
-}
+import { QuizAI } from "../ai/QuizAI.jsx";
 
 export function Quiz() {
   const { toast } = useToast();
   
   // Quiz state
-  const [gameState, setGameState] = useState<'start' | 'playing' | 'finished'>('start');
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [gameState, setGameState] = useState('start');
+  const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [answers, setAnswers] = useState([]);
   const [showResult, setShowResult] = useState(false);
   
   // AI Assistant state
@@ -31,7 +24,7 @@ export function Quiz() {
   
   // Timing state
   const [timeLeft, setTimeLeft] = useState(120); // 2 minutes per question
-  const [questionStartTime, setQuestionStartTime] = useState<number>(Date.now());
+  const [questionStartTime, setQuestionStartTime] = useState(Date.now());
   const [totalTimeSpent, setTotalTimeSpent] = useState(0);
 
   // Initialize quiz
@@ -73,7 +66,7 @@ export function Quiz() {
   }, [gameState, showResult, currentQuestionIndex]);
 
   // Handle answer selection
-  const handleAnswerSelect = (answerIndex: number) => {
+  const handleAnswerSelect = (answerIndex) => {
     if (showResult) return;
     setSelectedAnswer(answerIndex);
   };
@@ -94,7 +87,7 @@ export function Quiz() {
     const currentQuestion = questions[currentQuestionIndex];
     
     // Record the answer
-    const newAnswer: Answer = {
+    const newAnswer = {
       questionId: currentQuestion.id,
       selectedAnswer: selectedAnswer ?? -1, // -1 for no answer (timeout)
       isCorrect: selectedAnswer === currentQuestion.correctAnswer,

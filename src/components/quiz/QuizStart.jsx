@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { Badge } from "@/components/ui/badge.tsx";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.jsx";
+import { Button } from "@/components/ui/button.jsx";
+import { Badge } from "@/components/ui/badge.jsx";
 import { 
   Brain, 
   Clock, 
@@ -12,12 +12,7 @@ import {
   TrendingUp
 } from "lucide-react";
 
-interface QuizStartProps {
-  onStart: () => void;
-  questionCount: number;
-}
-
-export function QuizStart({ onStart, questionCount }: QuizStartProps) {
+export function QuizStart({ onStart, questionCount }) {
   const features = [
     {
       icon: Brain,

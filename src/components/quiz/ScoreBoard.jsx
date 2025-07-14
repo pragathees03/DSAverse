@@ -1,26 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { Badge } from "@/components/ui/badge.tsx";
-import { Progress } from "@/components/ui/progress.tsx";
-import { Question } from "@/data/dsaQuestions";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.jsx";
+import { Button } from "@/components/ui/button.jsx";
+import { Badge } from "@/components/ui/badge.jsx";
+import { Progress } from "@/components/ui/progress.jsx";
 import { Trophy, Target, BookOpen, TrendingUp, RotateCcw, Share2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-interface Answer {
-  questionId: number;
-  selectedAnswer: number;
-  isCorrect: boolean;
-  timeSpent: number;
-}
-
-interface ScoreBoardProps {
-  questions: Question[];
-  answers: Answer[];
-  totalTime: number;
-  onRestart: () => void;
-}
-
-export function ScoreBoard({ questions, answers, totalTime, onRestart }: ScoreBoardProps) {
+export function ScoreBoard({ questions, answers, totalTime, onRestart }) {
   const { toast } = useToast();
   
   const correctAnswers = answers.filter(a => a.isCorrect).length;
@@ -41,7 +26,7 @@ export function ScoreBoard({ questions, answers, totalTime, onRestart }: ScoreBo
     acc[category].questions.push({ question, answer });
     
     return acc;
-  }, {} as Record<string, { total: number; correct: number; questions: any[] }>);
+  }, {});
 
   const getScoreColor = () => {
     if (score >= 80) return "text-success";
@@ -57,7 +42,7 @@ export function ScoreBoard({ questions, answers, totalTime, onRestart }: ScoreBo
     return "Needs Improvement";
   };
 
-  const formatTime = (seconds: number) => {
+  const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;

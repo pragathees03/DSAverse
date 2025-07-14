@@ -1,15 +1,4 @@
-export interface Question {
-  id: number;
-  question: string;
-  options: string[];
-  correctAnswer: number;
-  category: string;
-  explanation: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  topics: string[];
-}
-
-export const dsaQuestions: Question[] = [
+export const dsaQuestions = [
   {
     id: 1,
     question: "What is the time complexity of searching in a binary search tree in the worst case?",
@@ -212,7 +201,7 @@ export const dsaQuestions: Question[] = [
   }
 ];
 
-export const getRandomQuestions = (count: number = 10): Question[] => {
+export const getRandomQuestions = (count = 10) => {
   // Fisher-Yates shuffle algorithm for proper randomization
   const shuffled = [...dsaQuestions];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -222,18 +211,18 @@ export const getRandomQuestions = (count: number = 10): Question[] => {
   return shuffled.slice(0, count);
 };
 
-export const getQuestionsByCategory = (category: string): Question[] => {
+export const getQuestionsByCategory = (category) => {
   return dsaQuestions.filter(q => q.category === category);
 };
 
-export const getQuestionsByDifficulty = (difficulty: string): Question[] => {
+export const getQuestionsByDifficulty = (difficulty) => {
   return dsaQuestions.filter(q => q.difficulty === difficulty);
 };
 
-export const getAllCategories = (): string[] => {
+export const getAllCategories = () => {
   return [...new Set(dsaQuestions.map(q => q.category))];
 };
 
-export const getAllTopics = (): string[] => {
+export const getAllTopics = () => {
   return [...new Set(dsaQuestions.flatMap(q => q.topics))];
 }; 

@@ -1,19 +1,8 @@
-import { Card, CardContent } from "@/components/ui/card.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { Badge } from "@/components/ui/badge.tsx";
-import { Question } from "@/data/dsaQuestions";
+import { Card, CardContent } from "@/components/ui/card.jsx";
+import { Button } from "@/components/ui/button.jsx";
+import { Badge } from "@/components/ui/badge.jsx";
 import { CheckCircle, XCircle, Clock, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-interface QuizCardProps {
-  question: Question;
-  currentQuestion: number;
-  totalQuestions: number;
-  selectedAnswer: number | null;
-  onAnswerSelect: (answerIndex: number) => void;
-  showResult: boolean;
-  timeLeft: number;
-}
 
 export function QuizCard({
   question,
@@ -23,8 +12,8 @@ export function QuizCard({
   onAnswerSelect,
   showResult,
   timeLeft
-}: QuizCardProps) {
-  const getDifficultyColor = (difficulty: string) => {
+}) {
+  const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
       case 'Easy': return 'bg-success text-success-foreground';
       case 'Medium': return 'bg-warning text-warning-foreground';
@@ -33,7 +22,7 @@ export function QuizCard({
     }
   };
 
-  const getOptionClassName = (index: number) => {
+  const getOptionClassName = (index) => {
     if (!showResult) {
       return cn(
         "w-full text-left p-4 rounded-lg border transition-all duration-200",

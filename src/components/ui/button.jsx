@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
@@ -32,13 +32,7 @@ const buttonVariants = cva(
   }
 )
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-}
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return (
@@ -55,13 +49,7 @@ Button.displayName = "Button"
 export { Button, buttonVariants }
 
 // Simple Switch component for toggling boolean state (e.g., theme)
-export interface SwitchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  checked: boolean;
-  onCheckedChange: (checked: boolean) => void;
-  label?: string;
-}
-
-export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
+export const Switch = React.forwardRef(
   ({ checked, onCheckedChange, label, className, ...props }, ref) => (
     <button
       type="button"
@@ -77,7 +65,7 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
           : "bg-muted border border-gray-300 shadow-sm hover:bg-gray-200",
         className
       )}
-      onClick={() => onCheckedChange(!checked)}
+      onClick={() => onCheckedChange && onCheckedChange(!checked)}
       {...props}
     >
       {/* Track label, always above the thumb */}
@@ -99,5 +87,5 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
       />
     </button>
   )
-);
-Switch.displayName = "Switch"; 
+)
+Switch.displayName = "Switch" 

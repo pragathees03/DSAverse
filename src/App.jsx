@@ -1,5 +1,5 @@
 import { Quiz } from './components/quiz/Quiz'
-import { Switch } from './components/ui/button';
+import { Switch } from './components/ui/button.jsx';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
             />
           </div>
           <div className="text-center flex flex-col items-center gap-2">
-            <h1 className="text-3xl font-bold text-blue-600 dark:text-blue-400">DSAverse</h1>
+            <h1 className="text-3xl font-bold text-primary">DSAverse</h1>
             <p className="text-gray-600 mt-2 dark:text-gray-300">
               Interactive DSA Learning Platform with AI Assistance
             </p>
