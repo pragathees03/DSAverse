@@ -1,7 +1,7 @@
 {
   "name": "dsaverse",
   "version": "1.0.0",
-  "description": "DSAverse - Interactive DSA Learning Platform with AI",
+  "description": "DSAverse - Interactive DSA Learning Platform with AI Assistant",
   "main": "index.js",
   "scripts": {
     "dev": "vite",

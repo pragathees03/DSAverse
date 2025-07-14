@@ -90,7 +90,7 @@ export function QuizAI({ currentQuestion, onClose }: QuizAIProps) {
     setInputValue('')
     setIsLoading(true)
 
-    // Simulate AI response (replace with actual Lovable AI API call)
+    // Simulate AI response with built-in intelligence
     setTimeout(() => {
       const aiResponse = generateAIResponse(message, currentQuestion)
       const aiMessage: Message = {

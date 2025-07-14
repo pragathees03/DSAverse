@@ -5,7 +5,7 @@ An interactive Data Structures and Algorithms learning platform with AI-powered 
 ## Features
 
 ### 🧠 Interactive Quiz System
-- **10 Random Questions**: Carefully curated DSA problems covering all major topics
+- **20 Random Questions**: Carefully curated DSA problems covering all major topics
 - **Time Tracking**: 2 minutes per question with real-time countdown
 - **Instant Feedback**: Detailed explanations for every answer
 - **Performance Analysis**: Get insights on areas to improve
@@ -38,7 +38,7 @@ An interactive Data Structures and Algorithms learning platform with AI-powered 
 
 - **Frontend**: React 18 + TypeScript
 - **Styling**: Tailwind CSS + shadcn/ui components
-- **AI Integration**: Lovable AI
+- **AI Assistant**: Built-in intelligent assistant
 - **Build Tool**: Vite
 - **Icons**: Lucide React
 
@@ -53,7 +53,7 @@ An interactive Data Structures and Algorithms learning platform with AI-powered 
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/pragathees03/DSAverse.git
    cd dsaverse
    ```
 
@@ -62,17 +62,12 @@ An interactive Data Structures and Algorithms learning platform with AI-powered 
    npm install
    ```
 
-3. **Set up Lovable AI**
-   - Sign up at [Lovable AI](https://lovable.ai)
-   - Get your API key
-   - Replace `"your-lovable-ai-api-key"` in `src/App.tsx` with your actual API key
-
-4. **Start the development server**
+3. **Start the development server**
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
+4. **Open your browser**
    Navigate to `http://localhost:5173`
 
 ## Usage
@@ -180,7 +175,6 @@ This project is licensed under the MIT License.
 For support and questions:
 - Create an issue in the repository
 - Contact the development team
-- Check the Lovable AI documentation
 
 ## Roadmap
 
