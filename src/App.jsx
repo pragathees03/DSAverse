@@ -47,6 +47,9 @@ function App() {
         {/* Main Quiz Component */}
         <Quiz />
       </div>
+      <footer className="w-full text-center py-4 text-sm text-muted-foreground border-t border-border bg-white dark:bg-background mt-8">
+        © Pragatheeswaran 2025
+      </footer>
     </div>
   )
 }
